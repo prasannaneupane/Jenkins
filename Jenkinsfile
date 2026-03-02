@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker {
+        docker { 
             image 'python:3.12'
         }
     }
@@ -15,7 +15,8 @@ pipeline {
         stage('Build') {
             steps {
                 dir('myapp') {
-                    sh 'pip install -r requirements.txt'
+                    // Upgrade pip and install dependencies
+                    sh 'python3 -m pip install --upgrade pip && pip install -r requirements.txt'
                 }
             }
         }
@@ -23,8 +24,9 @@ pipeline {
         stage('Test') {
             steps {
                 dir('myapp') {
-                    sh 'python hello.py'
-                    sh 'python hello.py --name=Brad'
+                    // Run your Python scripts
+                    sh 'python3 hello.py'
+                    sh 'python3 hello.py --name=Brad'
                 }
             }
         }
