@@ -1,37 +1,29 @@
 pipeline {
     agent {
-        // Use a Python Docker image directly
         docker {
-            image 'devopsjourney1/myjenkinsagents:python'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
+            image 'python:3.13.12-slim-trixie'
         }
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // Clone your GitHub repo from main branch
-                git branch: 'main', url: 'https://github.com/prasannaneupane/Jenkins.git'
+                git branch: 'main',
+                    url: 'https://github.com/prasannaneupane/Jenkins.git'
             }
         }
 
         stage('Build') {
             steps {
-                dir('myapp') {
-                    // Upgrade pip and install dependencies
-                    sh 'python3 -m pip install --upgrade pip'
-                    sh 'pip install -r requirements.txt'
-                }
+                sh 'python -m pip install --upgrade pip'
+                sh 'python -m pip install -r requirements.txt'
             }
         }
 
         stage('Test') {
             steps {
-                dir('myapp') {
-                    // Run your Python scripts
-                    sh 'python3 hello.py'
-                    sh 'python3 hello.py --name=Brad'
-                }
+                sh 'python hello.py'
+                sh 'python hello.py --name=Brad'
             }
         }
 
