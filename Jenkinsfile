@@ -15,6 +15,8 @@ pipeline {
                 sh '''
                     cd myapp
                     echo "doing build stuff..."
+                    python3 -m venv venv
+                    . venv/bin/activate
                     pip install -r requirements.txt
                 '''
             }
