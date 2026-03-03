@@ -14,9 +14,6 @@ pipeline {
                 echo "Building..."
                                 sh '''
                                 cd myapp
-                                if [ "$(uname)" = "Linux" ]; then
-                                    apt-get update && apt-get install -y python3-venv
-                                fi
                                 python3 -m venv venv
                                 . venv/bin/activate
                                 pip install -r requirements.txt
