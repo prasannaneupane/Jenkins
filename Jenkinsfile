@@ -10,16 +10,18 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps {
-                echo "Building..."
-                                sh '''
-                                cd myapp
-                                python3 -m venv venv
-                                . venv/bin/activate
-                                pip install -r requirements.txt
-                                '''
-            }
-        }
+    steps {
+        sh '''
+            cd myapp
+            apt-get update
+            apt-get install -y python3-venv
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+        '''
+    }
+}
 
         stage('Test') {
             steps {
