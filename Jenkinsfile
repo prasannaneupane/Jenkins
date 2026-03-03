@@ -15,8 +15,8 @@ pipeline {
                 sh '''
                     cd myapp
                     echo "doing build stuff..."
-                    sudo apt-get update
-                    sudo apt-get install -y python3-venv
+                    apt-get update
+                    apt-get install -y python3-venv
                     python3 -m venv venv
                     . venv/bin/activate
                     pip install -r requirements.txt
