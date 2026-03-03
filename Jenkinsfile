@@ -2,6 +2,7 @@ pipeline {
     agent { 
         node {
             label 'python-agent'
+            args '-u root:root' 
         }
     }
     triggers {
