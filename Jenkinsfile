@@ -13,7 +13,9 @@ pipeline {
             steps {
                 echo "Building..."
                 sh '''
-                    echo "doing build stuff..."
+                cd myapap
+                pip install -r requirements.txt
+                 
                 '''
             }
         }
