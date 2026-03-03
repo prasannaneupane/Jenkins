@@ -1,35 +1,35 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.13.12-slim-trixie'
+    agent { 
+        node {
+            label 'python-agent'
         }
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/prasannaneupane/Jenkins.git'
-            }
-        }
-
         stage('Build') {
             steps {
-                sh 'python3 -m pip install --upgrade pip'
-                sh 'python3 -m pip install -r requirements.txt'
+                echo "Building..."
+                sh '''
+                    echo "doing build stuff..."
+                '''
             }
         }
 
         stage('Test') {
             steps {
-                sh 'python3 hello.py'
-                sh 'python3 hello.py --name=Brad'
+                echo "Testing..."
+                sh '''
+                    echo "doing test stuff..."
+                '''
             }
         }
 
         stage('Deliver') {
             steps {
-                echo 'Delivering...'
+                echo "Delivering..."
+                sh '''
+                    echo "doing delivery stuff..."
+                '''
             }
         }
     }
